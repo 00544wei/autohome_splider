@@ -2,4 +2,4 @@
 
 from scrapy import cmdline
 
-cmdline.execute('scrapy crawl autohome_splider -o autohome.json'.split())
+cmdline.execute('scrapy crawl autohome_splider'.split())
