@@ -32,15 +32,21 @@ class AutoHomeSplider(scrapy.Spider):
         #获取所有的dd元素  （品牌信息包含在里面）
         options = select.find_elements_by_tag_name("dd")
         i = 1
+        y = 1
         for i_option in options:
-            print(i_option)
             #拼接一级标签的xpath路径
             i_path = "//div[@class='wrapper']/div[@class='homepage-findcar']/div[@class='findcar-select']/div[@class='option option-brand']/div[@id='js-carpicker-brand1']/div[@class='athm-select__option']/div[@class='pop-wrapper']//div[1]/dl/dd[" + str(i)+ "]"
             i += 1
             print(i_path)
+            print(i_option.text)
             #根据拿到的一级标签的xpath路径进行点击操作  以便获取二级标签的内容
             select.find_element_by_xpath(i_path).click()
-            print(i_option.text)
+            second_select = select.find_element_by_xpath("//div[@class='wrapper']/div[@class='homepage-findcar']/div[@class='findcar-select']/div[@class='option option-brand']/div[@id='js-carpicker-brand1']/div[@class='athm-select__option']/div[@class='pop-wrapper']//div[2]/dl")
+            second_options = second_select.find_elements_by_tag_name("dd[]")
+            for i_second_option in second_options:
+                if y == 1:
+                    continue
+                print(i_second_option.text)
             # print(i_option.get_attribute("data-value"))
         # selectValues = driver.find_element_by_xpath("//div[@class='wrapper']/div[@class='homepage-findcar']/div[@class='findcar-select']/div[@class='option option-brand']/div[@id='js-carpicker-brand1']/div[@class='athm-select__option']/div[@class='pop-wrapper']/div[@class='brand eye-protector-processed']/dl/dd")
         # sel = Select(selectValues)
