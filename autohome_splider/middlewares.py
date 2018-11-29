@@ -6,7 +6,7 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
+from fake_useragent import UserAgent
 
 class AutohomeSpliderSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -78,7 +78,9 @@ class AutohomeSpliderDownloaderMiddleware(object):
         # - or return a Request object
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
-        return None
+        user_agent = UserAgent()
+        request.headers['USER_AGENT'] = user_agent.random
+        # return None
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
