@@ -64,7 +64,6 @@ class AutoHomeSplider(scrapy.Spider):
                     brandUrlList = pvareaidstr.split("pvareaid=")
                     pvareaid = brandUrlList[1]
                     print(pvareaid)
-                    continue
                 print(i_second_option.text)
 
                 # 拼接要抓取的车系的url
